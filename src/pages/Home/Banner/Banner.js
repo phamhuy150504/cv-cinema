@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { BsFillCalendar2CheckFill } from 'react-icons/bs'
 import { AiFillClockCircle } from 'react-icons/ai'
 import { AiFillPlayCircle } from 'react-icons/ai'
-import Trailer from '../../components/trailer/Trailer'
+import Trailer from '../../../components/trailer/Trailer'
 
 
 export default function Banner() {
-    const [showTrailer, setShowTrailer] = useState(false)
+    const [trailer, setTrailer] = useState(true)
+
+
 
 // handle events 
-    const handleShowTrailer = () => setShowTrailer(true)
 
 // ----------------------------------------------------------------
     return (
@@ -35,11 +36,13 @@ export default function Banner() {
                             <li className='flex space-x-3'>
                                 <p className='flex space-x-2 md:text-base '><span className='text-[#E4D807]'><BsFillCalendar2CheckFill /> </span><span>2021</span></p>
 
-                                <p className='flex space-x-2'><span className='text-[#E4D807]'><AiFillClockCircle /></span> <span>120 min</span></p>
+                                <p className='flex space-x-2 md:text-base'><span className='text-[#E4D807]'><AiFillClockCircle /></span> <span>120'</span></p>
                             </li>
                         </ul>
 
-                        <button onClick={handleShowTrailer} className='py-3 px-7 border-2 border-[#E4D807] bg-[#12151e] hover:text-[#12151e] hover:bg-[#E4D807] duration-200 rounded-3xl flex items-center space-x-2 '>
+                        <button 
+                        onClick={() => setTrailer(false)}
+                        className='py-3 px-7 border-2 border-[#E4D807] bg-[#12151e] hover:text-[#12151e] hover:bg-[#E4D807] duration-200 rounded-3xl flex items-center space-x-2 '>
                             <p> <AiFillPlayCircle /></p> <span>Watch now</span>
                         </button>
                         
@@ -47,7 +50,7 @@ export default function Banner() {
                 </div>
             </div>
             
-            {showTrailer && <Trailer src={'https://www.youtube.com/embed/X0tOpBuYasI'} />}
+            <Trailer src={'https://www.youtube.com/embed/X0tOpBuYasI'} trailer={trailer} setTrailer={setTrailer} />
         </section>
     )
 }

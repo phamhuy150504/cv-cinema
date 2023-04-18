@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { AiOutlineMenu } from 'react-icons/ai';
 import Search from './Search';
+import MenuRe from './MenuRe';
 
 export default function Header() {
     const [navbar, setNavbar] = useState(false)
     const [search, setSearch] = useState(false)
+    const [menu, setMenu] = useState(false)
 
     // handle events
     const changeSearch = () => search ? setSearch(false) : setSearch(true)
 
-    const changeNavbar = () => window.scrollY >= 80 ? setNavbar(true) : setNavbar(false)
+    const changeMenu = () => menu ? setMenu(false) : setMenu(true)
+
+    const changeNavbar = () => window.scrollY >= 180 ? setNavbar(true) : setNavbar(false)
     window.addEventListener('scroll', changeNavbar)
 
 
@@ -46,7 +50,9 @@ export default function Header() {
                             <BiSearchAlt2 />
                         </button>
                         <button className="hidden lg:block self-center px-8 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300">Sign in</button>
-                        <button className='lg:hidden block text-3xl font-bold hover:text-[#E4D807] duration-300'>
+                        
+
+                        <button onClick={changeMenu} className='lg:hidden block text-3xl font-bold hover:text-[#E4D807] duration-300'>
                             <AiOutlineMenu />
                         </button>
                     </div>
@@ -55,7 +61,7 @@ export default function Header() {
             </header>
 
           {search && <Search search={search} setSearch={setSearch} changeSearch={changeSearch} />}
-
+          {menu && <MenuRe menu={menu} setMenu={setMenu} />}
         </>
     )
 }
