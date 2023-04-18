@@ -32,8 +32,7 @@ export default function UcomingMovie() {
   const [trailer, setTrailer] = useState(true)
   const { src } = useSelector(state => state.movieSlice)
 
-  const nowShowing = []
-  const comingSoon = []
+
 
   useEffect(() => {
     const fetchListMovie = async () => {
@@ -44,20 +43,21 @@ export default function UcomingMovie() {
         console.log(error);
       }
     }
-   
-
     fetchListMovie()
   }, [])
-console.log(listMovie);
-  listMovie.forEach((movie) =>{
-    if(movie.dangChieu) {
+
+  
+// handle events
+const nowShowing = []
+const comingSoon = []
+  listMovie.forEach((movie) => {
+    if (movie.dangChieu) {
       nowShowing.push(movie)
     } else {
       comingSoon.push(movie)
     }
   })
 
-  // handle events
   const renderListMovie = () => {
     if (changeListMovie) {
       return nowShowing.map((movie, index) => <CartMovie setTrailer={setListMovie} key={index} movie={movie} />)
@@ -68,7 +68,6 @@ console.log(listMovie);
   const handleChangeMovie = (check) => {
     setChangeListMovie(check)
   }
-
 
   // ---------------------------------------------------------------- 
   return (

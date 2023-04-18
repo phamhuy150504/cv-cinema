@@ -1,5 +1,5 @@
 import { https } from "./config"
 
 export const MovieService = () => ({
-    getListMovie: () => https.get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP05')
+    getListMovie: () => https.get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP07')
 })
