@@ -24,6 +24,7 @@ export default function Header() {
 
             <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-50 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
                 <div className="container flex justify-between items-center h-16 mx-auto">
+
                     <a href="#" className="flex items-center p-2">
                         <img className='w-[154px]' src="https://themehut.co/wp/movflx/wp-content/themes/movflx/assets/img/logo/logo.png" alt="logo" />
                     </a>
@@ -49,10 +50,14 @@ export default function Header() {
                             className='text-2xl hover:text-[#E4D807] duration-200 font-bold'>
                             <BiSearchAlt2 />
                         </button>
-                        <button className="hidden lg:block self-center px-8 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300">Sign in</button>
-                        
+                        <button 
+                        className="hidden lg:block self-center px-8 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300">
+                            Sign in
+                        </button>
 
-                        <button onClick={changeMenu} className='lg:hidden block text-3xl font-bold hover:text-[#E4D807] duration-300'>
+                        <button 
+                        onClick={changeMenu} 
+                        className='lg:hidden block text-3xl font-bold hover:text-[#E4D807] duration-300'>
                             <AiOutlineMenu />
                         </button>
                     </div>

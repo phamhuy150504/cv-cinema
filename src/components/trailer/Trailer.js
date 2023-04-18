@@ -14,10 +14,9 @@ export default function Trailer({ src, trailer, setTrailer }) {
 
         // ------------------
         return () => {
-         
             document.removeEventListener('mousedown', handleCloseOutside)
         }
-    }, [])
+    })
 
     // ------------------------------------------------------------
     return (

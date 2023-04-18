@@ -4,6 +4,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css"
 import CartMovie from './CartMovie';
 import Trailer from '../../../components/trailer/Trailer';
+import { useSelector } from 'react-redux';
+import { type } from '@testing-library/user-event/dist/type';
 
 const responsive = {
   superLargeDesktop: {
@@ -26,9 +28,12 @@ const responsive = {
 
 export default function UcomingMovie() {
   const [listMovie, setListMovie] = useState([])
-  const [changeListMovie, setchangeListMovie] = useState(true)
+  const [changeListMovie, setChangeListMovie] = useState(true)
   const [trailer, setTrailer] = useState(true)
+  const { src } = useSelector(state => state.movieSlice)
 
+  const nowShowing = []
+  const comingSoon = []
 
   useEffect(() => {
     const fetchListMovie = async () => {
@@ -39,36 +44,33 @@ export default function UcomingMovie() {
         console.log(error);
       }
     }
+   
 
     fetchListMovie()
   }, [])
-
-
-// handle 
-  const nowShowing = []
-  const comingSoon = []
-  listMovie.map(item => {
-    if(item.dangChieu) {
-      console.log(1);
-      nowShowing.push(item)
+console.log(listMovie);
+  listMovie.forEach((movie) =>{
+    if(movie.dangChieu) {
+      nowShowing.push(movie)
     } else {
-      comingSoon.push(item)
+      comingSoon.push(movie)
     }
   })
 
+  // handle events
   const renderListMovie = () => {
     if (changeListMovie) {
-      return nowShowing.map((movie, index) => <CartMovie trailer={trailer} setTrailer={setListMovie} key={index} movie={movie} />)
+      return nowShowing.map((movie, index) => <CartMovie setTrailer={setListMovie} key={index} movie={movie} />)
     }
-    return comingSoon.map((movie, index) => <CartMovie trailer={trailer} setTrailer={setListMovie} key={index} movie={movie} />)
+    return comingSoon.map((movie, index) => <CartMovie setTrailer={setListMovie} key={index} movie={movie} />)
   }
 
   const handleChangeMovie = (check) => {
-    setchangeListMovie(check)
+    setChangeListMovie(check)
   }
 
 
-// ---------------------------------------------------------------- 
+  // ---------------------------------------------------------------- 
   return (
     <section className=' h-full w-full bg-cover bg-center' style={{ backgroundImage: 'url(https://themehut.co/wp/movflx/wp-content/uploads/2022/08/ucm_bg.jpg)' }}>
       <div className='w-full h-full bg-black bg-opacity-90'>
@@ -87,6 +89,7 @@ export default function UcomingMovie() {
                   Now Showing
                 </button>
               </li>
+
               <li onClick={() => handleChangeMovie(false)}>
                 <button className='px-5 py-2 border-2 focus:border-2 focus:border-[#E4D807] rounded-3xl bg-[#12151e]'>
                   Coming Soon
@@ -98,7 +101,7 @@ export default function UcomingMovie() {
 
 
           <Carousel autoPlay={true} autoPlaySpeed={3000} className='text-white text-center space-x-5' responsive={responsive}>
-            
+
             {renderListMovie()}
 
           </Carousel>
@@ -106,8 +109,8 @@ export default function UcomingMovie() {
         </div>
       </div>
 
-      <Trailer src={'https://www.youtube.com/embed/X0tOpBuYasI'} trailer={trailer} setTrailer={setTrailer} /> 
-      
+      <Trailer src={src} trailer={trailer} setTrailer={setTrailer} />
+
     </section>
   )
 }

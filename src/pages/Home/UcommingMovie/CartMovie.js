@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "react-multi-carousel/lib/styles.css"
 import { AiFillClockCircle, AiFillLike, AiOutlinePlayCircle } from 'react-icons/ai'
-import Trailer from '../../../components/trailer/Trailer'
+import { useDispatch } from 'react-redux'
+import { getSrc } from '../../../toolkits/reducers/movieSlice'
 
 
-export default function CartMovie({ movie, Trailer, setTrailer }) {
-    const { tenPhim, ngayKhoiChieu, hinhAnh, src } = movie
+export default function CartMovie({ movie, setTrailer }) {
+    const { tenPhim, ngayKhoiChieu, hinhAnh, trailer } = movie
+    const dispatch = useDispatch()
+
+    const handleShowTrailer = () => {
+        dispatch(getSrc(trailer))
+        setTrailer(false)
+    }
 
     return (
        <>
@@ -15,7 +22,7 @@ export default function CartMovie({ movie, Trailer, setTrailer }) {
                         <img className="w-full h-[450px] rounded-t bg-cover bg-center relative" src={hinhAnh} alt="hinhAnh" />
                         <div className='absolute w-full h-[450px] top-0 left-0 bg-black bg-opacity-40 invisible  group-hover/item:visible duration-200'>
                             <div className='flex justify-center items-center h-full'>
-                                <button className=' rounded-full text-7xl hover:text-[#E4D807] duration-200'>
+                                <button onClick={handleShowTrailer} className=' rounded-full text-7xl hover:text-[#E4D807] duration-200'>
                                     <AiOutlinePlayCircle />
                                 </button>
                             </div>
