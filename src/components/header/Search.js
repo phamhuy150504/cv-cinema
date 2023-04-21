@@ -23,7 +23,7 @@ export default function Search({ search, setSearch, changeSearch }) {
                     </p>
                     
                     <input 
-                    className=' text-white bg-inherit p-5 text-3xl w-5/6 focus-visible:outline-none ' type="text" placeholder='What movie are you looking for...' />
+                    className='text-white bg-inherit p-5 text-3xl w-5/6 focus-visible:outline-none ' type="text" placeholder='What movie are you looking for...' />
                    
                     <button 
                     className=' text-5xl text-[#E4D807] duration-200 font-bold'>

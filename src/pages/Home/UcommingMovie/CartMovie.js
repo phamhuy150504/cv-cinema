@@ -1,6 +1,6 @@
 import React from 'react'
 import "react-multi-carousel/lib/styles.css"
-import { AiFillClockCircle, AiFillLike, AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiFillClockCircle, AiFillLike, AiFillPlayCircle } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { getSrc } from '../../../toolkits/reducers/movieSlice'
 
@@ -14,28 +14,34 @@ export default function CartMovie({ movie, setTrailer }) {
         setTrailer(false)
     }
 
+// ----------------------------------------------------------------
     return (
        <>
-            <div className='lg:w-[290px] md:w-[250px] sm:w-[300px] w-[350px] sm:mx-0 mx-auto shadow-2xl group/item'>
+            <div className='shadow-2xl  text-center w-full mx-auto col-span-1 relative group/item'>
                 <div className="mb-5 space-y-6">
+
                     <div>
-                        <img className="w-full h-[450px] rounded-t bg-cover bg-center relative" src={hinhAnh} alt="hinhAnh" />
-                        <div className='absolute w-full h-[450px] top-0 left-0 bg-black bg-opacity-40 invisible  group-hover/item:visible duration-200'>
+                        <img className="lg:h-[430px] lg:w-[300px] md:h-[410px] md:w-[290px] w-full rounded-t-sm bg-cover bg-center  " src={hinhAnh} alt="img" />
+                        <div 
+                        className='absolute  w-full h-0 bottom-0 group-hover/item:h-full duration-300 left-0 bg-black bg-opacity-40 invisible group-hover/item:visible'>
                             <div className='flex justify-center items-center h-full'>
-                                <button onClick={handleShowTrailer} className=' rounded-full text-7xl hover:text-[#E4D807] duration-200'>
-                                    <AiOutlinePlayCircle />
+                                <button onClick={handleShowTrailer} className=' rounded-full text-7xl text-yellow-500 hover:text-yellow-400 duration-200'>
+                                    <AiFillPlayCircle />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className='space-y-3'>
+                    
+                    <div className='space-y-3 w-full'>
+
                         <div className='flex justify-between'>
-                            <h5 className="hover:text-[#E4D807] font-semibold duration-200">
+                            <h5 className="hover:text-[#E4D807] font-semibold duration-200 cursor-pointer text-white">
                                 {tenPhim.substring(0, 12)}
                             </h5>
                             <span className="text-[#E4D807]">{ngayKhoiChieu.substring(0, 12)}</span>
                         </div>
-                        <ul className='flex justify-between text-xs '>
+
+                        <ul className='flex justify-between text-xs text-white'>
                             <li>
                                 <span className="text-[#E4D807] font-semibold border-gray-500 border-2 px-2">HD</span>
                             </li>
@@ -50,9 +56,10 @@ export default function CartMovie({ movie, setTrailer }) {
                                 </p>
                             </li>
                         </ul>
+
                     </div>
+
                 </div>
-                
             </div>
        </>
     )

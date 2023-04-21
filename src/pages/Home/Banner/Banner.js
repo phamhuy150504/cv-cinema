@@ -4,17 +4,12 @@ import { AiFillClockCircle } from 'react-icons/ai'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import Trailer from '../../../components/trailer/Trailer'
 
-
 export default function Banner() {
     const [trailer, setTrailer] = useState(true)
 
-
-
-// handle events 
-
 // ----------------------------------------------------------------
     return (
-        <section className='h-screen w-full bg-cover bg-center' style={{ backgroundImage: 'url("https://themehut.co/wp/movflx/wp-content/uploads/2022/08/banner_bg01.jpg")' }}>
+        <section className='h-screen w-full bg-cover bg-center' style={{ backgroundImage: 'url("../img/banner_bg01.jpg")' }}>
             <div className='container mx-auto pt-56'>
                 <div className='flex items-center h-full px-4'>
                     <div className='text-white font-bold sm:w-1/2 w-ful lg:space-y-5'>
