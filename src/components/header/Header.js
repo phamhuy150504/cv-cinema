@@ -33,13 +33,13 @@ export default function Header() {
             <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-50 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
                 <div className="container flex justify-between items-center h-16 mx-auto">
 
-                    <a href="#" className="flex items-center p-2">
+                    <NavLink to={'/'} className="flex items-center p-2">
                         <img className='w-[154px]' src="../img/logo.png" alt="logo" />
-                    </a>
+                    </NavLink>
 
                     <ul className="items-stretch hidden space-x-12 lg:flex">
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">HOME</a>
+                            <NavLink to={'/'} className="flex items-center text-sm font-bold">HOME</NavLink>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
                             <a href="#" className="flex items-center text-sm font-bold">MOVIE</a>
@@ -50,7 +50,7 @@ export default function Header() {
                         <li className="flex hover:text-[#E4D807] duration-300 ">
                             <a href="#" className="flex items-center text-sm font-bold">BLOG</a>
                         </li>
-                    </ul>
+                    </ul> 
 
                     <div className="items-center flex-shrink-0 flex space-x-5">
                         <button
@@ -62,8 +62,8 @@ export default function Header() {
                         {account ?
                             <button onClick={handleLogout} className='hidden lg:block self-center px-3 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300'>
                                 <NavLink className='flex items-center space-x-3'>
-                                    <p className='text-3xl'><BiLogIn /></p>
-                                    <p className='text-base'> Đăng Xuất</p>
+                                    <p className='text-2xl'><BiLogIn /></p>
+                                    <p className='text-sm'> Đăng Xuất</p>
                                 </NavLink>
                             </button>
                             :

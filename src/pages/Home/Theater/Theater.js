@@ -32,11 +32,11 @@ export default function Theater() {
                 ),
                 children: (
                     <div
-                        style={{ height: '650px', overflowY: "scroll" }}
-                        className="space-y-5"
+                        style={{ height: '600px', overflowY: "scroll" }}
+                        className="space-y-5 "
                     >
-                        {movie.danhSachPhim.map((itemMovie) => {
-                            return <ItemTheater itemMovie={itemMovie} />;
+                        {movie.danhSachPhim.map((itemMovie, index) => {
+                            return <ItemTheater key={index} itemMovie={itemMovie} />;
                         })}
                     </div>
                 ),
@@ -49,7 +49,7 @@ export default function Theater() {
             key: theater.maHeThongRap,
             label: <img className='h-16' src={theater.logo} alt="logo-theater" />,
             children: (
-                <Tabs style={{ height: '650px' }} tabPosition='left' className='text-white' defaultActiveKey="1" items={renderListMovie(theater)} />
+                <Tabs style={{ height: '600px' }} tabPosition='left' className='text-white' defaultActiveKey="1" items={renderListMovie(theater)} />
             )
         }))
     }
@@ -63,8 +63,8 @@ export default function Theater() {
                         <h1 className='text-white text-4xl font-bold'>Top Rated Theater And Movie</h1>
                     </div>
 
-                    <div className='w-3/4 mx-auto bg-white bg-opacity-70 rounded shadow-xl'>
-                        <Tabs tabPosition='left' className='text-white py-5' defaultActiveKey="1" items={renderTheaterList()} />
+                    <div className='container w-[900px] mx-auto border-2 border-white rounded shadow-xl'>
+                        <Tabs tabPosition='top' className='text-white px-5' defaultActiveKey="1" items={renderTheaterList()} />
                     </div>
                 </div>
         </section>

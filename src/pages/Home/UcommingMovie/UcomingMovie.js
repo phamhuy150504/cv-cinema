@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 export default function UcomingMovie() {
   const [listMovie, setListMovie] = useState([])
   const [changeListMovie, setChangeListMovie] = useState(true)
-  const [trailer, setTrailer] = useState(true)
   const { src } = useSelector(state => state.movieSlice)
 
   useEffect(() => {
@@ -37,9 +36,9 @@ export default function UcomingMovie() {
 
   const renderListMovie = () => {
     if (changeListMovie) {
-      return nowShowing.map((movie, index) => <CartMovie setTrailer={setTrailer} key={index} movie={movie} />)
+      return nowShowing.map((movie, index) => <CartMovie  key={index} movie={movie} />)
     }
-    return comingSoon.map((movie, index) => <CartMovie setTrailer={setTrailer} key={index} movie={movie} />)
+    return comingSoon.map((movie, index) => <CartMovie  key={index} movie={movie} />)
   }
 
   const handleChangeMovie = (check) => {
@@ -84,7 +83,6 @@ export default function UcomingMovie() {
         </div>
       </div>
 
-      <Trailer src={src} trailer={trailer} setTrailer={setTrailer} />
     </section>
   )
 }

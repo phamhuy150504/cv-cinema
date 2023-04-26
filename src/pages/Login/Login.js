@@ -12,7 +12,6 @@ export default function Login() {
 
 // handle
     const onFinish = (values) => {
-        console.log(values);
         const userLogin = async () => {
             try {
                 const res = await userService().login(values)
@@ -21,7 +20,7 @@ export default function Login() {
                 message.success('Login successful')
                 navigate('/')
             } catch (error) {
-                console.log(error); 
+                message.error('Bạn nhập sai tài khoản hoặc mật khẩu')
             }
         }
 
