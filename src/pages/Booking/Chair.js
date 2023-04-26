@@ -14,13 +14,14 @@ export default function Chair({ chair }) {
       dispatch(handleBooked(choosing))
   }
 
-  let ticketBooked = localService.get().taiKhoan === chair.taiKhoanNguoiDat
+  let ticketBooked = localService.get()?.taiKhoan === chair.taiKhoanNguoiDat
   
 // ----------------------------------------------------------------
   return (
         <>
            
-            {ticketBooked ? <button  className='bg-blue-500 text-white shadow-2xl cursor-not-allowed w-[24px] h-[22px] text-base mx-[1px] flex items-center justify-center' disabled><AiOutlineUser /></button> 
+            {
+            ticketBooked ? <button  className='bg-blue-500 text-white shadow-2xl cursor-not-allowed w-[24px] h-[22px] text-base mx-[1px] flex items-center justify-center' disabled><AiOutlineUser /></button> 
             
             :
 

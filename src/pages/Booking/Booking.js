@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { bookingService } from '../../services/BookingService'
 import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,10 +7,12 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { fetListChair, removeListBooked } from '../../toolkits/reducers/bookingSlice'
 import Chair from './Chair'
 import Swal from 'sweetalert2'
+import { localService } from '../../services/localService'
 
 export default function Booking() {
     const [infoRoomTickets, setInfoRoomTickets] = useState()
     const { listBooked } = useSelector(state => state.bookingSlice)
+    const navigate = useNavigate()
     const paramURL = useParams()
     const dispatch = useDispatch()
 
@@ -34,6 +36,13 @@ export default function Booking() {
 
     // handle events
     const handlePurchase = () => {
+        if(localService.get() !== true) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'You need login !',
+            })
+            navigate('/login')
+        }
         if (listBooked.length <= 0) {
             Swal.fire({
                 icon: 'error',

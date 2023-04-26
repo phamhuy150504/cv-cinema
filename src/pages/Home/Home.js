@@ -9,12 +9,12 @@ import Letter from './Letter/Letter'
 export default function Home() {
   return (
     <>
-        <Banner />
-        <UcomingMovie />
-        <Online />
-        <BestMovie />
-        <Theater />
-        <Letter />
+      <Banner />
+      <UcomingMovie />
+      <Online />
+      <BestMovie />
+      <Theater />
+      <Letter />
     </>
   )
 }

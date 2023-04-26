@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MovieService } from '../../../services/movieService'
 import "react-multi-carousel/lib/styles.css"
 import CartMovie from './CartMovie';
@@ -6,7 +6,7 @@ import { setLoadingOff, setLoadingOn } from '../../../toolkits/reducers/SpinnerS
 import { useDispatch } from 'react-redux';
 
 
-export default function UcomingMovie({ref}) {
+export default function UcomingMovie() {
 
   const [listMovie, setListMovie] = useState([])
   const [changeListMovie, setChangeListMovie] = useState(true)
@@ -27,7 +27,7 @@ export default function UcomingMovie({ref}) {
     fetchListMovie()
   }, [])
 
-  // handle events
+// handle events
   const nowShowing = []
   const comingSoon = []
   listMovie.forEach((movie) => {
@@ -40,18 +40,18 @@ export default function UcomingMovie({ref}) {
 
   const renderListMovie = () => {
     if (changeListMovie) {
-      return nowShowing.map((movie, index) => <CartMovie  key={index} movie={movie} />)
+      return nowShowing.map((movie, index) => <CartMovie key={index} movie={movie} />)
     }
-    return comingSoon.map((movie, index) => <CartMovie  key={index} movie={movie} />)
+    return comingSoon.map((movie, index) => <CartMovie key={index} movie={movie} />)
   }
 
   const handleChangeMovie = (check) => {
     setChangeListMovie(check)
   }
 
-  // ---------------------------------------------------------------- 
+// ---------------------------------------------------------------- 
   return (
-    <section ref={ref}  className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(https://themehut.co/wp/movflx/wp-content/uploads/2022/08/ucm_bg.jpg)' }}>
+    <section className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(https://themehut.co/wp/movflx/wp-content/uploads/2022/08/ucm_bg.jpg)' }}>
       <div className='w-full h-full bg-black bg-opacity-90' style={{ backgroundImage: 'url("../img/ucm_bg_shape.png")' }}>
         <div className='pt-16 pb-10 container mx-auto space-y-16'>
           <div className='flex md:justify-between md:flex-row flex-col items-center justify-center md:space-y-0 space-y-5 md:text-left text-center'>

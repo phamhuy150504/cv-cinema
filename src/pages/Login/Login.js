@@ -11,7 +11,7 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-// handle
+    // handle
     const onFinish = (values) => {
         dispatch(setLoadingOn())
         const userLogin = async () => {
@@ -30,8 +30,8 @@ export default function Login() {
 
         userLogin()
     };
-    
-// ----------------------------------------------------------------
+
+    // ----------------------------------------------------------------
     return (
         <section className='w-screen h-screen bg-cover bg-center bg-no-repeat' style={{ backgroundImage: 'url(https://i0.wp.com/www.alphr.com/wp-content/uploads/2020/10/Netflix-001.png?fit=569%2C320&ssl=1)' }}>
             <div className='h-full flex items-center justify-center'>

@@ -1,5 +1,5 @@
 import { Tabs } from 'antd';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MovieService } from '../../../services/movieService';
 import ItemTheater from './ItemTheater';
 import { useDispatch } from 'react-redux';

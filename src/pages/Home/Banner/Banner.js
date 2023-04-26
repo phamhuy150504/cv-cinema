@@ -7,7 +7,7 @@ import Trailer from '../../../components/trailer/Trailer'
 export default function Banner() {
     const [trailer, setTrailer] = useState(true)
 
-// ----------------------------------------------------------------
+    // ----------------------------------------------------------------
     return (
         <section className='h-screen w-full bg-cover bg-center' style={{ backgroundImage: 'url("../img/banner_bg01.jpg")' }}>
             <div className='container mx-auto pt-56'>
@@ -35,17 +35,17 @@ export default function Banner() {
                             </li>
                         </ul>
 
-                        <button 
-                        onClick={() => setTrailer(false)}
-                        className='py-3 px-7 border-2 border-[#E4D807] bg-[#12151e] hover:text-[#12151e] hover:bg-[#E4D807] duration-200 rounded-3xl flex items-center space-x-2 '>
+                        <button
+                            onClick={() => setTrailer(false)}
+                            className='py-3 px-7 border-2 border-[#E4D807] bg-[#12151e] hover:text-[#12151e] hover:bg-[#E4D807] duration-200 rounded-3xl flex items-center space-x-2 '>
                             <p> <AiFillPlayCircle /></p> <span>Watch now</span>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>
-            
-            <Trailer src={'https://www.youtube.com/embed/X0tOpBuYasI'} trailer={trailer} setTrailer={setTrailer} />
+
+            {!trailer && <Trailer src={'https://www.youtube.com/embed/X0tOpBuYasI'} trailer={trailer} setTrailer={setTrailer} />}
         </section>
     )
 }

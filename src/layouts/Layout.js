@@ -4,7 +4,6 @@ import Footer from '../components/footer/Footer'
 import BackToTop from '../components/BackToTop/BackToTop'
 
 export default function Layout({ Component }) {
-  const ref = useRef(null)
 
   const [backToTop, setBackToTop] = useState(false)
 
@@ -18,9 +17,9 @@ export default function Layout({ Component }) {
   return (
    <>
       <div>
-          <Header resultRef={ref} />
+          <Header />
           <div className='flex-grow'>
-            <Component ref={ref} />
+            <Component />
           </div>
           <Footer />
       </div>

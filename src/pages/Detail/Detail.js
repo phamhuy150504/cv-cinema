@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { MovieService } from '../../services/movieService'
 import { AiFillClockCircle, AiFillLike } from 'react-icons/ai'
@@ -14,6 +14,7 @@ export default function Detail() {
     const [detailMovie, setDetailMovie] = useState({})
     const paramUrl = useParams()
     const dispatch = useDispatch()
+    const ref = useRef()
 
     useEffect(() => {
         dispatch(setLoadingOn())
@@ -24,12 +25,16 @@ export default function Detail() {
                 dispatch(setLoadingOff())
             } catch (error) {
                 dispatch(setLoadingOff())
-                console.log(error);
             }
         }
 
         fetchDetailMovie()
     }, [])
+
+    // handle events
+    const handleScrollShowTime = () => {
+        ref.current.scrollIntoView({ behavior: "smooth" });
+    }
 
     const handleShowTrailer = () => setTrailer(false)
 
@@ -76,7 +81,7 @@ export default function Detail() {
                         </h3>
 
                         <div>
-                            <button className='px-10 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:text-white hover:bg-opacity-0 duration-300'>
+                            <button onClick={handleScrollShowTime} className='px-10 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:text-white hover:bg-opacity-0 duration-300'>
                                 Buy Ticket
                             </button>
                         </div>
@@ -94,7 +99,9 @@ export default function Detail() {
                 </div>
             </section>
 
-            <ShowTimes maPhim={detailMovie?.maPhim}/>
+            <div ref={ref}>
+                <ShowTimes maPhim={detailMovie?.maPhim} />
+            </div>
 
             <Trailer src={detailMovie.trailer} trailer={trailer} setTrailer={setTrailer} />
         </>

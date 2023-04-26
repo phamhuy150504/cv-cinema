@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { BiSearchAlt2, BiLogIn } from 'react-icons/bi';
 import { AiOutlineMenu } from 'react-icons/ai';
-import Search from './Search';
-import MenuRe from './MenuRe';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { localService } from '../../services/localService';
+import Search from './Search';
+import MenuRe from './MenuRe';
 
-export default function Header({resultRef}) {
+export default function Header() {
     const [navbar, setNavbar] = useState(false)
     const [search, setSearch] = useState(false)
     const [menu, setMenu] = useState(false)
@@ -30,7 +30,7 @@ export default function Header({resultRef}) {
     // ----------------------------------------------------------------
     return (
         <>
-            <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-4020364 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
+            <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-40 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
                 <div className="container flex justify-between items-center h-16 mx-auto">
 
                     <NavLink to={'/'} className="flex items-center p-2">
@@ -42,9 +42,7 @@ export default function Header({resultRef}) {
                             <NavLink to={'/'} className="flex items-center text-sm font-bold">HOME</NavLink>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a onClick={()=>{
-                                resultRef.current.scrollIntoView({behavior:"smooth"})
-                            }} className="flex items-center text-sm font-bold">UPCOMING</a>
+                            <a href='#' className="flex items-center text-sm font-bold">UPCOMING</a>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
                             <a href="#" className="flex items-center text-sm font-bold">THEATER</a>

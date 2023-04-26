@@ -26,8 +26,8 @@ export default function BestMovie() {
 
     const renderBestMovie = () => (
         bestMovie.map((item, index) => (
-            <NavLink to={`/detail/${item.maPhim}`}>
-                    <img key={index} className="lg:w-[290px] md:w-[250px] md:h-[150px]  w-full sm:mx-0 mx-auto shadow-2xl hover:-translate-y-4 duration-300 hover:cursor-pointer rounded-md bg-cover bg-center " src={item.hinhAnh} alt="hinhAnh" />
+            <NavLink key={index} to={`/detail/${item.maPhim}`}>
+                <img key={index} className="lg:w-[290px] md:w-[250px] md:h-[150px]  w-full sm:mx-0 mx-auto shadow-2xl hover:-translate-y-4 duration-300 hover:cursor-pointer rounded-md bg-cover bg-center " src={item.hinhAnh} alt="hinhAnh" />
             </NavLink>
         ))
     )
