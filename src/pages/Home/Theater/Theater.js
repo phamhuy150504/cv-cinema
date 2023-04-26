@@ -2,16 +2,22 @@ import { Tabs } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { MovieService } from '../../../services/movieService';
 import ItemTheater from './ItemTheater';
+import { useDispatch } from 'react-redux';
+import { setLoadingOff, setLoadingOn } from '../../../toolkits/reducers/SpinnerSlice';
 
 export default function Theater() {
     const [theaterList, setTheaterList] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(setLoadingOn())
         const fetchListTheater = async () => {
             try {
                 const res = await MovieService().getTheaterList()
                 setTheaterList(res.data.content)
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 console.log(error);
             }
         }

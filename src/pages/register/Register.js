@@ -6,17 +6,24 @@ import {
 } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { userService } from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice';
 
 const Register = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const onFinish = (values) => {
+        dispatch(setLoadingOn())
         const registerAPI = async () => {
             try {
                 const res = await userService().registerAccount(values)
                 navigate('/login')
                 message.success('register Successful')
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 message.error(error.response.data.content)
             }
         } 

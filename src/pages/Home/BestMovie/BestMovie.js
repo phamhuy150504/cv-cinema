@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { MovieService } from '../../../services/movieService'
 import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setLoadingOff, setLoadingOn } from '../../../toolkits/reducers/SpinnerSlice'
 
 export default function BestMovie() {
     const [bestMovie, setBestMovie] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(setLoadingOn())
         const fetchBestMovie = async () => {
             try {
                 const res = await MovieService().getBestMovie()
                 setBestMovie(res.data.content)
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 console.log(error);
             }
         }

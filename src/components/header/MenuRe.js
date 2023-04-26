@@ -44,13 +44,13 @@ export default function MenuRe({ setMenu }) {
               <NavLink to={'/'} className='px-8' href="#">HOME</NavLink>
             </li>
             <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
-              <a className='px-8' href="#">Movie</a>
+              <a className='px-8' href="#">UPCOMING</a>
             </li>
             <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
-              <a className='px-8' href="#">TVSHOW</a>
+              <a className='px-8' href="#">THEATER</a>
             </li>
             <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
-              <a className='px-8' href="#">BLOG</a>
+              <a className='px-8' href="#">HISTORY</a>
             </li>
 
             {account &&

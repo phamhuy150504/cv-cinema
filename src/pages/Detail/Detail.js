@@ -6,18 +6,24 @@ import { BsPlayCircle } from 'react-icons/bs'
 import { Progress, Space } from 'antd'
 import ShowTimes from './ShowTimes'
 import Trailer from '../../components/trailer/Trailer'
+import { useDispatch } from 'react-redux'
+import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice'
 
 export default function Detail() {
     const [trailer, setTrailer] = useState(true)
     const [detailMovie, setDetailMovie] = useState({})
     const paramUrl = useParams()
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(setLoadingOn())
         const fetchDetailMovie = async () => {
             try {
                 const res = await MovieService().getDetailMovie(paramUrl.id)
-                setDetailMovie(res.data.content);
+                setDetailMovie(res.data.content)
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 console.log(error);
             }
         }

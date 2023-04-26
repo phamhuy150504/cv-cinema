@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MovieService } from '../../../services/movieService'
 import "react-multi-carousel/lib/styles.css"
 import CartMovie from './CartMovie';
-import Trailer from '../../../components/trailer/Trailer';
-import { useSelector } from 'react-redux';
+import { setLoadingOff, setLoadingOn } from '../../../toolkits/reducers/SpinnerSlice';
+import { useDispatch } from 'react-redux';
 
 
-export default function UcomingMovie() {
+export default function UcomingMovie({ref}) {
+
   const [listMovie, setListMovie] = useState([])
   const [changeListMovie, setChangeListMovie] = useState(true)
-  const { src } = useSelector(state => state.movieSlice)
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setLoadingOn())
     const fetchListMovie = async () => {
       try {
         const result = await MovieService().getListMovie()
         setListMovie(result.data.content)
+        dispatch(setLoadingOff())
       } catch (error) {
+        dispatch(setLoadingOff())
         console.log(error);
       }
     }
@@ -47,7 +51,7 @@ export default function UcomingMovie() {
 
   // ---------------------------------------------------------------- 
   return (
-    <section className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(https://themehut.co/wp/movflx/wp-content/uploads/2022/08/ucm_bg.jpg)' }}>
+    <section ref={ref}  className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(https://themehut.co/wp/movflx/wp-content/uploads/2022/08/ucm_bg.jpg)' }}>
       <div className='w-full h-full bg-black bg-opacity-90' style={{ backgroundImage: 'url("../img/ucm_bg_shape.png")' }}>
         <div className='pt-16 pb-10 container mx-auto space-y-16'>
           <div className='flex md:justify-between md:flex-row flex-col items-center justify-center md:space-y-0 space-y-5 md:text-left text-center'>

@@ -5,6 +5,7 @@ import { userService } from '../../services/userService';
 import { useDispatch } from 'react-redux';
 import { getUserLogin } from '../../toolkits/reducers/userSlice';
 import { localService } from '../../services/localService';
+import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -12,14 +13,17 @@ export default function Login() {
 
 // handle
     const onFinish = (values) => {
+        dispatch(setLoadingOn())
         const userLogin = async () => {
             try {
                 const res = await userService().login(values)
                 dispatch(getUserLogin(res.data.content))
-                localService.set(values)
+                localService.set(res.data.content)
                 message.success('Login successful')
                 navigate('/')
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 message.error('Bạn nhập sai tài khoản hoặc mật khẩu')
             }
         }
@@ -61,7 +65,6 @@ export default function Login() {
                         >
                             <Input />
                         </Form.Item>
-
                         <Form.Item
                             label="Password"
                             name="matKhau"

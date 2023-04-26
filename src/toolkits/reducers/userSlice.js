@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { localService } from '../../services/localService';
 
 const initialState = {
-    account: localService.get()
+    account: localService.get(),
+    refBooking: null
 }
 
 const userSlice = createSlice({
@@ -11,10 +12,13 @@ const userSlice = createSlice({
   reducers: {
     getUserLogin: ((state = initialState, { payload }) => {
         state.account = payload
+    }),
+    testRef: ((state = initialState, { payload }) => {
+      state.refBooking = payload
     })
   }
 });
 
-export const { getUserLogin } = userSlice.actions
+export const { getUserLogin,testRef } = userSlice.actions
 
 export default userSlice.reducer

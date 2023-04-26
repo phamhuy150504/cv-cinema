@@ -1,85 +1,99 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { bookingService } from '../../services/BookingService'
+import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { AiOutlineUser } from 'react-icons/ai'
+import { fetListChair, removeListBooked } from '../../toolkits/reducers/bookingSlice'
 import Chair from './Chair'
-import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
 export default function Booking() {
     const [infoRoomTickets, setInfoRoomTickets] = useState()
-    const paramURL = useParams()
     const { listBooked } = useSelector(state => state.bookingSlice)
+    const paramURL = useParams()
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(setLoadingOn())
         const fetchInfoRoomTickets = async () => {
             try {
                 const res = await bookingService().getInfoRoomTickets(paramURL.id)
-                setInfoRoomTickets(res.data.content);
+                setInfoRoomTickets(res.data.content)
+                dispatch(fetListChair(res.data.content))
+                dispatch(setLoadingOff())
             } catch (error) {
-                console.log(error);
+                dispatch(setLoadingOff())
             }
         }
 
         fetchInfoRoomTickets()
     }, [])
 
-    // handle
-  const handlePurchase = () => {
-    let infoBooking = {
-        maLichChieu: paramURL.id,
-        danhSachVe: listBooked
-    }
+    
 
-    const postInfoBooking = async () => {
-        try {
-            const res = await bookingService().postBookingTickets(infoBooking)
-            console.log(res);
-        } catch (error) {
-            console.log(error);
+    // handle events
+    const handlePurchase = () => {
+        if (listBooked.length <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Đặt Vé Thất Bại !',
+                text: 'Vui Lòng Chọn Ghế',
+            })
+        } else {
+            let infoBooking = {
+                maLichChieu: paramURL.id,
+                danhSachVe: listBooked
+            }
+
+            const postInfoBooking = async () => {
+                dispatch(setLoadingOn())
+                try {
+                    const res = await bookingService().postBookingTickets(infoBooking)
+                    const result = await bookingService().getInfoRoomTickets(paramURL.id)
+                    setInfoRoomTickets(result.data.content)
+                    dispatch(fetListChair(result.data.content))
+                    dispatch(removeListBooked())
+
+                    Swal.fire(
+                        res.data.content,
+                        'Vé đã được thanh toán và thêm vào lịch sử đặt vé!',
+                        'success'
+                    )
+                    dispatch(setLoadingOff())
+                } catch (error) {
+                    dispatch(setLoadingOff())
+                }
+            }
+
+            postInfoBooking()
         }
     }
 
-    postInfoBooking()
-
-    // if(listBooked.length <= 0) {
-    //     Swal.fire({
-    //         icon: 'error',
-    //         title: 'Đặt Vé Thất Bại !',
-    //         text: 'Vui Lòng Chọn Ghế',
-    //       })
-    // } else {
-    //     Swal.fire(
-    //         'Đặt Vé Thành Công !',
-    //         'Vé đã được thanh toán và thêm vào lịch sử đặt vé!',
-    //         'success'
-    //       )
-    // }
-  }
-
-    const renderListChair = () => (
-        infoRoomTickets?.danhSachGhe.slice(0, 158).map((chair, index) => {
+    const renderListChair = () => {
+        return infoRoomTickets?.danhSachGhe.slice(0, 158).map((chair, index) => {
             const indexChair = ['03', '15', '27', '39', '51', '63', '75', '87', '99', '111', '123', '135',]
             const check = indexChair.includes(chair.tenGhe)
-            return check 
-                ? 
+            return check
+                ?
                 <Fragment key={index}>
                     <button className='w-[24px] h-[22px] cursor-default mx-[1px]'></button>
                     <button className='w-[24px] h-[22px] cursor-default mx-[1px]'></button>
-                    <Chair key={index} chair={chair} check={check} />
+                    <Chair  key={index} chair={chair} check={check} />
                 </Fragment>
                 :
                 <Chair key={index} chair={chair} check={check} />
-        }))
+        })}
 
-        const renderChairBooked = () => (
-            listBooked.map(item => <span className='text-[#E4D807]' key={item.tenGhe}>{item.tenGhe}, </span>)
-        )
+    const renderChairBooked = () => (
+        listBooked.map(item => <span className='text-[#E4D807]' key={item.tenGhe}>{item.tenGhe}, </span>)
+    )
 
-        const totalTicket = () => (
-            listBooked.reduce((init, item) => {
-                return init += item.giaVe
-            }, 0).toLocaleString()
-        )
+    const totalTicket = () => (
+        listBooked.reduce((init, item) => {
+            return init += item.giaVe
+        }, 0).toLocaleString()
+    )
 
     // ----------------------------------------------------------------
     return (
@@ -128,8 +142,14 @@ export default function Booking() {
                                 <span>Không thể chọn</span>
                             </div>
 
-                            <div className='space-x-2 font-semibold text-sm'><button className='bg-[#E4D807]  cursor-not-allowed w-[24px] h-[22px] text-xs mx-[1px]' disabled>X</button>
+                            <div className='space-x-2 font-semibold text-sm'>
+                                <button className='bg-[#E4D807]  cursor-not-allowed w-[24px] h-[22px] text-xs mx-[1px]' disabled>X</button>
                                 <span>Checked</span>
+                            </div>
+
+                            <div className='space-x-2 font-semibold text-sm flex'>
+                                <button className='bg-blue-500 text-white shadow-2xl cursor-not-allowed w-[24px] h-[22px] text-base mx-[1px] flex items-center justify-center' disabled><AiOutlineUser /></button>
+                                <span>Your chair</span>
                             </div>
                         </li>
 
@@ -188,12 +208,12 @@ export default function Booking() {
                                 </li>
 
                                 <li className='space-y-4 -translate-x-[17px] md:-translate-x-0'>
-                                    <h1 className='text-xl text-[#E4D807] '>Total:  
+                                    <h1 className='text-xl text-[#E4D807] '>Total:
                                         <span className='text-white ml-1'>
                                             {totalTicket()} VNĐ
                                         </span>
                                     </h1>
-                                    
+
                                     <button onClick={handlePurchase} className='px-10 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:text-white hover:bg-opacity-0 duration-300'>Purchase</button>
                                 </li>
 

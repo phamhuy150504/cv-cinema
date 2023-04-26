@@ -1,6 +1,7 @@
 import Layout from "../layouts/Layout";
 import Booking from "../pages/Booking/Booking";
 import Detail from "../pages/Detail/Detail";
+import HistoryBooking from "../pages/HistoryBooking/HistoryBooking";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import NotFound from "../pages/NotFound/NotFound";
@@ -26,6 +27,10 @@ export const routes = [
     {
         url: '/booking/:id',
         component: <Layout Component={Booking} /> 
+    },
+    {
+        url: '/history',
+        component: <HistoryBooking /> 
     },
     {
         url: '*',

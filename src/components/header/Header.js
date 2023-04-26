@@ -7,12 +7,12 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { localService } from '../../services/localService';
 
-export default function Header() {
+export default function Header({resultRef}) {
     const [navbar, setNavbar] = useState(false)
     const [search, setSearch] = useState(false)
     const [menu, setMenu] = useState(false)
     const { account } = useSelector(state => state.userSlice)
-
+   
     // handle events
     const changeSearch = () => search ? setSearch(false) : setSearch(true)
 
@@ -30,7 +30,7 @@ export default function Header() {
     // ----------------------------------------------------------------
     return (
         <>
-            <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-50 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
+            <header className={navbar ? 'bg-[#171d22] pb-4 pt-2 duration-300 text-white z-4020364 w-full h-20 fixed ' : 'p-2 text-white absolute w-full top-0 left-0'}>
                 <div className="container flex justify-between items-center h-16 mx-auto">
 
                     <NavLink to={'/'} className="flex items-center p-2">
@@ -38,17 +38,19 @@ export default function Header() {
                     </NavLink>
 
                     <ul className="items-stretch hidden space-x-12 lg:flex">
-                        <li className="flex hover:text-[#E4D807] duration-300 ">
+                        <li className="flex hover:text-[#E4D807] duration-300">
                             <NavLink to={'/'} className="flex items-center text-sm font-bold">HOME</NavLink>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">MOVIE</a>
+                            <a onClick={()=>{
+                                resultRef.current.scrollIntoView({behavior:"smooth"})
+                            }} className="flex items-center text-sm font-bold">UPCOMING</a>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">TVSHOW</a>
+                            <a href="#" className="flex items-center text-sm font-bold">THEATER</a>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">BLOG</a>
+                            <a href="#" className="flex items-center text-sm font-bold">HISTORY</a>
                         </li>
                     </ul> 
 

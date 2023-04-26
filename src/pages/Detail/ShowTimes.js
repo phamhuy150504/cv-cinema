@@ -3,17 +3,23 @@ import { Tabs } from 'antd';
 import { theaterService } from '../../services/TheaterService';
 import moment from 'moment/moment';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLoadingOff, setLoadingOn } from '../../toolkits/reducers/SpinnerSlice';
 
 
 export default function ShowTimes({ maPhim }) {
     const [showTimes, setShowTimes] = useState({})
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(setLoadingOn())
         const fetchShowTimes = async () => {
             try {
                 const res = await theaterService().getInfoShowTimes(maPhim)
                 setShowTimes(res.data.content)
+                dispatch(setLoadingOff())
             } catch (error) {
+                dispatch(setLoadingOff())
                 console.log(error);
             }
         }
@@ -29,7 +35,6 @@ export default function ShowTimes({ maPhim }) {
 
                     <div className='grid lg:grid-cols-3 gap-3'>
                         {theater.lichChieuPhim.map(button => {
-                            console.log(button)
                             return <NavLink to={`/booking/${button.maLichChieu}`}>
                                 <button className='px-5 py-1 border-2 text-black hover:text-white border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:bg-opacity-0 duration-300'>
                                     {moment(button.ngayChieuGioChieu).format("DD-mm-yyyy ~ hh:mm")}

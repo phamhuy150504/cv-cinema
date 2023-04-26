@@ -3,7 +3,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 export default function  ItemTheater({ itemMovie }) {
-    console.log(itemMovie);
     return (
         <div className="flex justify-center space-x-5 border-black border-b pb-3">
 
