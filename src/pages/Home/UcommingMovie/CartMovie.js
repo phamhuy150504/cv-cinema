@@ -10,14 +10,14 @@ export default function CartMovie({ movie }) {
     // ----------------------------------------------------------------
     return (
         <NavLink to={`/detail/${maPhim}`}>
-            <div className='shadow-2xl text-center w-full mx-auto col-span-1 cursor-pointer flex justify-center'>
-                <div className="mb-5 pb-5 ">
+            <div className='shadow-2xl text-center sm:w-full w-[270px]  mx-auto col-span-1 cursor-pointer flex justify-center rounded-lg'>
+                <div className="mb-5 ">
 
-                    <div className='overflow-hidden'>
-                        <img className="lg:h-[410px] lg:w-[300px] md:h-[390px] md:w-[290px] sm:h-[450px] h-[400px] sm:w-full w-[270px] rounded-t-sm bg-cover bg-center hover:scale-125 duration-300 ease-in-out" src={hinhAnh} alt="img" />
+                    <div className='overflow-hidden rounded-t-lg'>
+                        <img className="lg:h-[410px] lg:w-[300px] md:h-[390px] md:w-[290px] sm:h-[450px] h-[400px] sm:w-full w-[270px] rounded-t-lg bg-cover bg-center hover:scale-125 duration-300 ease-in-out" src={hinhAnh} alt="img" />
                     </div>
 
-                    <div className='space-y-3 w-full px-3 py-5 rounded-b'>
+                    <div className='space-y-3 w-full px-3 pt-3 '>
 
                         <div className='flex justify-between '>
                             <h5 className="hover:text-[#E4D807] font-semibold duration-200 cursor-pointer text-white">

@@ -20,7 +20,7 @@ export default function ItemTheater({ itemMovie }) {
                     {itemMovie.lstLichChieuTheoPhim.slice(0, 3).map((item, index) => {
                         return (
                             <NavLink key={index} to={`/booking/${itemMovie.lstLichChieuTheoPhim[0].maLichChieu}`}>
-                                <button className="px-5 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:text-white hover:bg-opacity-0 duration-300">
+                                <button className="px-5 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-lg font-semibold text-black hover:text-white hover:bg-opacity-0 duration-300">
                                     {moment(item.ngayChieuGioChieu).format("DD -mm-yyyy")}
                                 </button>
                             </NavLink>

@@ -3,8 +3,6 @@ import { localService } from '../../services/localService';
 
 const initialState = {
     account: localService.get(),
-    refBooking: null
-
 }
 
 const userSlice = createSlice({

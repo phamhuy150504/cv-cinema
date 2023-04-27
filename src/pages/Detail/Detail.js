@@ -81,7 +81,7 @@ export default function Detail() {
                         </h3>
 
                         <div>
-                            <button onClick={handleScrollShowTime} className='px-10 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:text-white hover:bg-opacity-0 duration-300'>
+                            <button onClick={handleScrollShowTime} className='px-10 py-1 border-2 border-[#E4D807] bg-[#E4D807] rounded-lg font-semibold hover:text-white hover:bg-opacity-0 duration-300'>
                                 Buy Ticket
                             </button>
                         </div>

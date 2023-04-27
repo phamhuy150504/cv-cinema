@@ -30,13 +30,17 @@ export default function Booking() {
         }
 
         fetchInfoRoomTickets()
+
+        return () => {
+            dispatch(removeListBooked())
+        }
     }, [])
 
     
 
     // handle events
     const handlePurchase = () => {
-        if(localService.get() !== true) {
+        if(localService.get() == null) {
             Swal.fire({
                 icon: 'warning',
                 title: 'You need login !',
@@ -81,7 +85,7 @@ export default function Booking() {
 
     const renderListChair = () => {
         return infoRoomTickets?.danhSachGhe.slice(0, 158).map((chair, index) => {
-            const indexChair = ['03', '15', '27', '39', '51', '63', '75', '87', '99', '111', '123', '135',]
+            const indexChair = ['03', '15', '27', '39', '51', '63', '75', '87', '99', '111', '123', '135']
             const check = indexChair.includes(chair.tenGhe)
             return check
                 ?
@@ -148,7 +152,7 @@ export default function Booking() {
                         <li className='flex flex-col justify-center space-y-1'>
                             <div className='space-x-2 font-semibold text-sm'>
                                 <button className='bg-gray-500 cursor-not-allowed w-[24px] h-[22px] text-xs mx-[1px]' disabled>X</button>
-                                <span>Không thể chọn</span>
+                                <span>Can't choose</span>
                             </div>
 
                             <div className='space-x-2 font-semibold text-sm'>
@@ -165,12 +169,12 @@ export default function Booking() {
                         <li className='flex flex-col justify-center space-y-1'>
                             <div className='space-x-2 font-semibold text-sm'>
                                 <button className='border-2 border-green-500 w-[24px] h-[22px] text-xs mx-[1px]'></button>
-                                <span>Ghế Thường</span>
+                                <span>Normal</span>
                             </div>
 
                             <div className='space-x-2 font-semibold text-sm'>
                                 <button className='border-2 border-[#E4D807] w-[24px] h-[22px] text-xs mx-[1px]'></button>
-                                <span>Ghế Vip</span>
+                                <span>VIP</span>
                             </div>
                         </li>
                     </ul>

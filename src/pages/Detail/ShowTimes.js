@@ -36,7 +36,7 @@ export default function ShowTimes({ maPhim }) {
                     <div className='grid lg:grid-cols-3 gap-3'>
                         {theater.lichChieuPhim.map(button => {
                             return <NavLink to={`/booking/${button.maLichChieu}`}>
-                                <button className='px-5 py-1 border-2 text-black hover:text-white border-[#E4D807] bg-[#E4D807] rounded-sm font-semibold hover:bg-opacity-0 duration-300'>
+                                <button className='px-5 py-1 border-2 text-black hover:text-white border-[#E4D807] bg-[#E4D807] rounded-lg font-semibold hover:bg-opacity-0 duration-300'>
                                     {moment(button.ngayChieuGioChieu).format("DD-mm-yyyy ~ hh:mm")}
                                 </button>
                             </NavLink>

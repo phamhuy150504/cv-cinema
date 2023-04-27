@@ -63,16 +63,16 @@ export default function Theater() {
     // ----------------------------------------------------------------
     return (
         <section className='lg:block hidden h-full w-full bg-cover bg-center' style={{ backgroundImage: 'url("../img/tr_movies_bg.jpg")' }}>
-                <div className='py-20 space-y-12'>
-                    <div className='text-center space-y-3'>
-                        <h2 className='text-[#E4D807] text-sm'>ONLINE STREAMING</h2>
-                        <h1 className='text-white text-4xl font-bold'>Top Rated Theater And Movie</h1>
-                    </div>
-
-                    <div className='container w-[900px] mx-auto border-2 border-white rounded shadow-xl'>
-                        <Tabs tabPosition='top' className='text-white px-5' defaultActiveKey="1" items={renderTheaterList()} />
-                    </div>
+            <div className='py-20 space-y-12'>
+                <div className='text-center space-y-3'>
+                    <h2 className='text-[#E4D807] text-sm'>ONLINE STREAMING</h2>
+                    <h1 className='text-white text-4xl font-bold'>Top Rated Theater And Movie</h1>
                 </div>
+
+                <div className='container w-[900px] mx-auto border-2 border-white rounded-lg shadow-xl'>
+                    <Tabs tabPosition='top' className='text-white px-5' defaultActiveKey="1" items={renderTheaterList()} />
+                </div>
+            </div>
         </section>
     )
 }

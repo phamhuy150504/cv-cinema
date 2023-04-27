@@ -21,7 +21,6 @@ export default function UcomingMovie() {
         dispatch(setLoadingOff())
       } catch (error) {
         dispatch(setLoadingOff())
-        console.log(error);
       }
     }
     fetchListMovie()

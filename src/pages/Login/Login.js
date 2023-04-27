@@ -24,7 +24,7 @@ export default function Login() {
                 dispatch(setLoadingOff())
             } catch (error) {
                 dispatch(setLoadingOff())
-                message.error('Bạn nhập sai tài khoản hoặc mật khẩu')
+                message.error('You entered the wrong account or password !')
             }
         }
 
@@ -54,7 +54,7 @@ export default function Login() {
                     >
 
                         <Form.Item
-                            label="Username"
+                            label="Account"
                             name="taiKhoan"
                             rules={[
                                 {
