@@ -44,7 +44,7 @@ export default function Detail() {
             <section className='h-full pb-20 w-full' style={{ backgroundImage: 'url("../img/movie_details_bg.jpg")' }}>
                 <div className='container flex md:flex-row flex-col items-center pt-32 md:space-y-0 space-y-10'>
 
-                    <div className='relative md:w-2/4 lg:w-1/4'>
+                    <div className='relative md:w-2/4 lg:w-1/4 w-full'>
                         <img className=' w-[303px] h-[430px] md:w-[290px] md:h-[410px] rounded-lg' src={detailMovie.hinhAnh} alt="img" />
                         <div>
                             <button onClick={handleShowTrailer} className='absolute top-1/2 left-1/2 text-[75px] -translate-x-1/2 -translate-y-1/2 text-gray-400'>
@@ -103,7 +103,7 @@ export default function Detail() {
                 <ShowTimes maPhim={detailMovie?.maPhim} />
             </div>
 
-            <Trailer src={detailMovie.trailer} trailer={trailer} setTrailer={setTrailer} />
+            {!trailer && <Trailer src={detailMovie.trailer} trailer={trailer} setTrailer={setTrailer} />}
         </>
     )
 }

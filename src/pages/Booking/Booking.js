@@ -36,23 +36,24 @@ export default function Booking() {
         }
     }, [])
 
-    
+
 
     // handle events
     const handlePurchase = () => {
-        if(localService.get() == null) {
+        if (localService.get() == null) {
             Swal.fire({
                 icon: 'warning',
                 title: 'You need login !',
             })
             navigate('/login')
-        }
-        if (listBooked.length <= 0) {
+            return
+        } else if (listBooked.length <= 0) {
             Swal.fire({
                 icon: 'error',
-                title: 'Đặt Vé Thất Bại !',
+                title: 'Booking Fail !',
                 text: 'Vui Lòng Chọn Ghế',
             })
+            return
         } else {
             let infoBooking = {
                 maLichChieu: paramURL.id,
@@ -92,11 +93,12 @@ export default function Booking() {
                 <Fragment key={index}>
                     <button className='w-[24px] h-[22px] cursor-default mx-[1px]'></button>
                     <button className='w-[24px] h-[22px] cursor-default mx-[1px]'></button>
-                    <Chair  key={index} chair={chair} check={check} />
+                    <Chair key={index} chair={chair} check={check} />
                 </Fragment>
                 :
                 <Chair key={index} chair={chair} check={check} />
-        })}
+        })
+    }
 
     const renderChairBooked = () => (
         listBooked.map(item => <span className='text-[#E4D807]' key={item.tenGhe}>{item.tenGhe}, </span>)

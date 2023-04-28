@@ -54,15 +54,25 @@ export default function MenuRe({ setMenu }) {
               <a className='px-8' href="#">HISTORY</a>
             </li>
 
-            {account &&
+            {account ?
               <li onClick={handleLogout}>
                 <button className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200 w-full pl-6'>
                   <NavLink className='flex items-center space-x-3'>
                     <p className='text-3xl'><BiLogIn /></p>
-                    <p className='text-base'> Đăng Xuất</p>
+                    <p className='text-base'> Log out</p>
                   </NavLink>
                 </button>
-              </li>}
+              </li>
+              :
+              <li>
+                <button className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200 w-full pl-6'>
+                  <NavLink to={'/login'} className='flex items-center space-x-3'>
+                    <p className='text-3xl'><BiLogIn /></p>
+                    <p className='text-base'> Log in</p>
+                  </NavLink>
+                </button>
+              </li>
+              }
 
           </ul>
 

@@ -10,7 +10,7 @@ export default function CartMovie({ movie }) {
     // ----------------------------------------------------------------
     return (
         <NavLink to={`/detail/${maPhim}`}>
-            <div className='shadow-2xl text-center sm:w-full w-[270px]  mx-auto col-span-1 cursor-pointer flex justify-center rounded-lg'>
+            <div className='shadow-2xl text-center sm:w-full w-[270px]  mx-auto cursor-pointer flex justify-center rounded-lg'>
                 <div className="mb-5 ">
 
                     <div className='overflow-hidden rounded-t-lg'>

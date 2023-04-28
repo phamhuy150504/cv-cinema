@@ -9,7 +9,7 @@ export default function Layout({ Component }) {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      window.scrollY > 100 ? setBackToTop(true) : setBackToTop(false)
+      window.scrollY > 180 ? setBackToTop(true) : setBackToTop(false)
     })
 
   }, [])

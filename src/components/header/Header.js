@@ -60,10 +60,10 @@ export default function Header() {
                         </button>
 
                         {account ?
-                            <button onClick={handleLogout} className='hidden lg:block self-center px-3 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300'>
+                            <button onClick={handleLogout} className='hidden lg:block self-center px-5 py-2 rounded-3xl border-[#E4D807] border-2 hover:bg-[#E4D807] hover:text-black font-bold duration-300'>
                                 <NavLink className='flex items-center space-x-3'>
                                     <p className='text-2xl'><BiLogIn /></p>
-                                    <p className='text-sm'> Đăng Xuất</p>
+                                    <p className='text-sm'>Log out</p>
                                 </NavLink>
                             </button>
                             :
