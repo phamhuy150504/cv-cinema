@@ -32,7 +32,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className='border-t-2 border-gray-500 pt-5'>
-                <h1 className='text-center font-semibold text-white'>2020 © Specto.  All rights reserved.</h1>
+                <h1 className='text-center font-semibold text-white'>Making by Pham Gia Huy</h1>
             </div>
         </div>
     </div>

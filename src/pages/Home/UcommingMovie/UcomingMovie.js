@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 
 export default function UcomingMovie() {
-  const [chosse, setChosse] = useState(false)
+  const [chosse, setChosse] = useState(true)
   const [listMovie, setListMovie] = useState([])
   const dispatch = useDispatch()
 
@@ -49,7 +49,7 @@ export default function UcomingMovie() {
 
   // ---------------------------------------------------------------- 
   return (
-    <section className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(../img/ucm_bg.jpg)' }}>
+    <section id='upcoming' className=' h-full w-full bg-cover bg-center -z-50' style={{ backgroundImage: 'url(../img/ucm_bg.jpg)' }}>
       <div className='w-full h-full bg-black bg-opacity-90' style={{ backgroundImage: 'url("../img/ucm_bg_shape.png")' }}>
         <div className='pt-16 pb-10 container mx-auto space-y-16'>
           <div className='flex md:justify-between md:flex-row flex-col items-center justify-center md:space-y-0 space-y-5 md:text-left text-center'>

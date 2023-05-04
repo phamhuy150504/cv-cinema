@@ -36,11 +36,35 @@ export default function Booking() {
         }
     }, [])
 
-
-
     // handle events
+    const postInfoBooking = async () => {
+        let infoBooking = {
+            maLichChieu: paramURL.id,
+            danhSachVe: listBooked
+        }
+
+        dispatch(setLoadingOn())
+        try {
+            const res = await bookingService().postBookingTickets(infoBooking)
+            const result = await bookingService().getInfoRoomTickets(paramURL.id)
+            setInfoRoomTickets(result.data.content)
+            dispatch(fetListChair(result.data.content))
+            dispatch(removeListBooked())
+
+            Swal.fire(
+                res.data.content,
+                'Vé đã được thanh toán và thêm vào lịch sử đặt vé!',
+                'success'
+            )
+            dispatch(setLoadingOff())
+        } catch (error) {
+            dispatch(setLoadingOff())
+        }
+    }
+
+
     const handlePurchase = () => {
-        if (localService.get() == null) {
+        if (localService.get() === null) {
             Swal.fire({
                 icon: 'warning',
                 title: 'You need login !',
@@ -51,35 +75,10 @@ export default function Booking() {
             Swal.fire({
                 icon: 'error',
                 title: 'Booking Fail !',
-                text: 'Vui Lòng Chọn Ghế',
+                text: 'Choosing your chair, please !',
             })
             return
         } else {
-            let infoBooking = {
-                maLichChieu: paramURL.id,
-                danhSachVe: listBooked
-            }
-
-            const postInfoBooking = async () => {
-                dispatch(setLoadingOn())
-                try {
-                    const res = await bookingService().postBookingTickets(infoBooking)
-                    const result = await bookingService().getInfoRoomTickets(paramURL.id)
-                    setInfoRoomTickets(result.data.content)
-                    dispatch(fetListChair(result.data.content))
-                    dispatch(removeListBooked())
-
-                    Swal.fire(
-                        res.data.content,
-                        'Vé đã được thanh toán và thêm vào lịch sử đặt vé!',
-                        'success'
-                    )
-                    dispatch(setLoadingOff())
-                } catch (error) {
-                    dispatch(setLoadingOff())
-                }
-            }
-
             postInfoBooking()
         }
     }
@@ -132,7 +131,7 @@ export default function Booking() {
                     </div>
 
                     <div className='text-xl font-bold bg-[#BCBDC0] text-white w-full text-center py-1 mt-5'>
-                        Người / Ghế
+                        Person / Chair
                     </div>
 
 

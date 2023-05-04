@@ -26,7 +26,7 @@ export default function Trailer({ src, trailer, setTrailer }) {
                     <p ref={ele_trailer} className='absolute -top-7 -right-2 text-2xl font-bold text-white cursor-pointer'>
                         <GrClose />
                     </p>
-                    <iframe className='lg:w-[850px] lg:h-[450px] md:w-[600px] md:h-[350px] sm:w-[550px] sm:h-[300px] w-[440px] h-[280px]' src={src} title="Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+                    <iframe className='lg:w-[850px] lg:h-[450px] md:w-[600px] md:h-[350px] sm:w-[550px] sm:h-[300px] w-[440px] h-[280px]' src={src}  title="Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                 </div>
             </div>
         </div>

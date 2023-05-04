@@ -28,6 +28,13 @@ export default function MenuRe({ setMenu }) {
 
   const handleChangPage = () => setMenu(false)
 
+  const handleScroll = (id) => {
+    const ele = document.getElementById(id)
+    console.log(ele);
+    ele.scrollIntoView({ behavior: "smooth" })
+    // handleChangPage()
+}
+
   // ----------------------------------------------------------------
   return (
     <div className='w-screen h-screen bg-[rgba(23,26,33,.95)] z-50 fixed ' >
@@ -44,11 +51,11 @@ export default function MenuRe({ setMenu }) {
             <li  className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
               <NavLink onClick={handleChangPage} to={'/'} className='px-8' href="#">HOME</NavLink>
             </li>
-            <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
-              <a className='px-8' href="#">UPCOMING</a>
+            <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200 cursor-pointer'>
+              <span onClick={() => handleScroll('upcoming')} className='px-8' >UPCOMING</span>
             </li>
-            <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
-              <a className='px-8' href="#">THEATER</a>
+            <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200 cursor-pointer'>
+              <span onClick={() => handleScroll('theater')} className='px-8'>THEATER</span>
             </li>
             <li className='border-b-2 border-gray-500 pb-3 hover:text-[#E4D807] duration-200'>
               <a className='px-8' href="#">HISTORY</a>

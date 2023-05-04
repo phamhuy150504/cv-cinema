@@ -26,6 +26,10 @@ export default function Header() {
         window.location.reload()
     }
 
+    const handleScroll = (id) => {
+        const ele = document.getElementById(id)
+        ele.scrollIntoView({ behavior: "smooth" })
+    }
 
     // ----------------------------------------------------------------
     return (
@@ -42,13 +46,13 @@ export default function Header() {
                             <NavLink to={'/'} className="flex items-center text-sm font-bold">HOME</NavLink>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href='#' className="flex items-center text-sm font-bold">UPCOMING</a>
+                            <span onClick={() => handleScroll('upcoming')} className="flex items-center text-sm font-bold hover:cursor-pointer">UPCOMING</span>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">THEATER</a>
+                            <span onClick={() => handleScroll('theater')} className="flex items-center text-sm font-bold hover:cursor-pointer">THEATER</span>
                         </li>
                         <li className="flex hover:text-[#E4D807] duration-300 ">
-                            <a href="#" className="flex items-center text-sm font-bold">HISTORY</a>
+                            <NavLink to={'/history'} className="flex items-center text-sm font-bold">HISTORY</NavLink>
                         </li>
                     </ul> 
 

@@ -62,7 +62,7 @@ export default function Theater() {
 
     // ----------------------------------------------------------------
     return (
-        <section className='lg:block hidden h-full w-full bg-cover bg-center' style={{ backgroundImage: 'url("../img/tr_movies_bg.jpg")' }}>
+        <section id='theater' className='lg:block hidden h-full w-full bg-cover bg-center' style={{ backgroundImage: 'url("../img/tr_movies_bg.jpg")' }}>
             <div className='py-20 space-y-12'>
                 <div className='text-center space-y-3'>
                     <h2 className='text-[#E4D807] text-sm'>ONLINE STREAMING</h2>

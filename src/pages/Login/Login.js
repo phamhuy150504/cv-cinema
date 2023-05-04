@@ -21,6 +21,9 @@ export default function Login() {
                 localService.set(res.data.content)
                 message.success('Login successful')
                 navigate('/')
+
+                // reload page => the server will got updated acessToken to the application
+                window.location.reload()
                 dispatch(setLoadingOff())
             } catch (error) {
                 dispatch(setLoadingOff())
