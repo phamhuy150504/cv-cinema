@@ -1,23 +1,16 @@
 import React, { useEffect } from 'react'
 import { userService } from '../../services/userService'
-import axios from 'axios';
-import { configHeader } from '../../services/config';
+import { localService } from '../../services/localService';
 
 export default function HistoryBooking() {
-
     useEffect(() => {
       const fetchInfoAccount = async () => {
         try {
-            console.log('object');
-            // const res = await userService().getInfoAccount()
-            const res = await axios({
-                method:"POST",
-                url:"https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
-                headers: configHeader()
-            })
-            console.log(res);
+            console.log('object')
+            const res = await userService().getInfoAccount(localService.get().taiKhoan)
+            console.log(res)
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
       }
 

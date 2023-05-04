@@ -53,7 +53,7 @@ export default function Booking() {
 
             Swal.fire(
                 res.data.content,
-                'Vé đã được thanh toán và thêm vào lịch sử đặt vé!',
+                'Booking successful, you can check in your history !',
                 'success'
             )
             dispatch(setLoadingOff())

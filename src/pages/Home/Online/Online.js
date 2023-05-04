@@ -55,7 +55,7 @@ export default function Online() {
                 </div>
             </div>
 
-            <Trailer src={'https://www.youtube.com/embed/R2gbPxeNk2E'} trailer={trailer} setTrailer={setTrailer} />
+            {!trailer && <Trailer src={'https://www.youtube.com/embed/R2gbPxeNk2E'} trailer={trailer} setTrailer={setTrailer} />}
         </section>
 
     )
